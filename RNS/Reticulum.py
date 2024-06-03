@@ -929,6 +929,29 @@ class Reticulum:
                                     else:
                                         interface.ifac_size = 8
 
+                                if c["type"] == "MeshtasticInterface":
+
+                                    interface = MeshtasticInterface.MeshtasticInterface(
+                                        RNS.Transport,
+                                        name,
+                                        c
+                                    )
+
+                                    if "outgoing" in c and c.as_bool("outgoing") == False:
+                                        interface.OUT = False
+                                    else:
+                                        interface.OUT = True
+
+                                    interface.mode = interface_mode
+
+                                    interface.announce_cap = announce_cap
+                                    if configured_bitrate:
+                                        interface.bitrate = configured_bitrate
+                                    if ifac_size != None:
+                                        interface.ifac_size = ifac_size
+                                    else:
+                                        interface.ifac_size = 8
+
                                 if interface != None:
                                     interface.announce_rate_target = announce_rate_target
                                     interface.announce_rate_grace = announce_rate_grace
